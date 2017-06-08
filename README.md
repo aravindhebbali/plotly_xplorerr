@@ -1,2 +1,3 @@
 # plotly_xplorerr
-plotly graphics for xplorerr app
+
+Build interactive plots using [plotly]() for the xplorerr app
