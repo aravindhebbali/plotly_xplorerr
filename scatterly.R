@@ -1,8 +1,9 @@
 library(plotly)
 
 scatterly <- function(data, x, y, name = NA, text = NA,
-                      color = 'blue', opacity = 1, 
-                      symbol = 'circle', size = 5,
+                      color = '#1F77B4', opacity = 1, 
+                      axis_range = FALSE, x_min, x_max, y_min, y_max,
+                      symbol = 'circle', size = 5, 
                       title = NA, show_legend = TRUE,
                       x_title = NA, y_title = NA,
                       x_showgrid = TRUE, y_showgrid = TRUE,
@@ -39,6 +40,18 @@ scatterly <- function(data, x, y, name = NA, text = NA,
       showlegend = show_legend
     )
   
+  if(axis_range) {
+    p <- p %>%
+      layout(
+        xaxis = list(
+          range = list(x_min, x_max)
+        ),
+        yaxis = list(
+          range = list(y_min, y_max)
+        )
+      )
+  }
+  
   if(fit_line) {
     
     p <- p %>%
@@ -55,13 +68,14 @@ scatterly <- function(data, x, y, name = NA, text = NA,
     p  
   }
   
-  p
+  p 
 
 }
 
 
 # test
-scatterly(mtcars, 'disp', 'mpg', text = 'hello',
-          title = 'Displacement vs Mileage',
+scatterly(mtcars, 'disp', 'mpg', text = 'hello', size = 8,
+          title = 'Displacement vs Mileage', axis_range = FALSE,
+          x_min = 0, x_max = 600, y_min = 0, y_max = 50,
           x_title = 'Displacement', y_title = 'Miles Per Gallon',
           show_legend = F, x_showgrid = F, fit_line = T)
