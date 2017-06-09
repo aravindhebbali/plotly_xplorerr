@@ -1,51 +1,28 @@
 library(dplyr)
 library(plotly)
 
-xaxis <- list(title = 'Observation',
-              showline = TRUE,
-              showgrid = TRUE,
-              gridcolor = 'blue',
-              showticklabels = TRUE,
-              linecolor = 'blue',
-              linewidth = 1,
-              zeroline = FALSE,
-              autotick = FALSE,
-              ticks = 'outside',
-              tickcolor = 'green',
-              tickwidth = 2,
-              ticklen = 10,
-              tickfont = list(family = 'Arial',
-                              size = 12,
-                              color = 'blue'))
+data1 <- c(7.2, 7.6, 6.8, 6.5, 7)
+data2 <- c(6.8, 7.2, 7.8, 7, 6.2)
+data <- data.frame(x = data1, y = data2)
 
-# annotations
-annote <- list(
-  x = 10,
-  y = 20,
-  xanchor = 'middle',
-  yanchor = 'middle',
-  text = 'hello',
-  font = list(family = 'Arial',
-              size = 16,
-              color = 'blue'),
-  showarrow = FALSE
-)
-
-p <- plot_ly(data = mtcars,
-             type = "scatter", 
-             mode = "lines",
-             x = 1:32,
-             y = mpg,
-             line = list(
-               color = 'red',
-               width = 4,
-               dash = 'dot'
-             )) %>%
+linely <- function(data, x, lcol = 'blue', lwidth = 1, ltype = 'plain') {
   
-  layout(title = 'Line Chart',
-         paper_bgcolor = 'gray',
-         plot_bgcolor = 'pink',
-         xaxis = xaxis) %>%
-  layout(annotations = annote)
+  yax <- data %>% select_(x) %>% unlist()
+  xax <- yax %>% length() %>% seq_len()
+  
+  p <- plot_ly(data = data,
+               type = "scatter", 
+               mode = "lines",
+               x = xax,
+               y = yax,
+               line = list(
+                 color = lcol,
+                 width = lwidth,
+                 dash = ltype
+               )) 
+  
+  p
+  
+}
 
-p
+p <- linely(data, 'x')
