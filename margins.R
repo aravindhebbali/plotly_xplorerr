@@ -28,6 +28,9 @@ l <- list(orientation = 'h')
 
 # styling legend
 l <- list(
+  x = 100,
+  y = 0.5,
+  orientation = 'v',
   font = list(
     family = "sans-serif",
     size = 12,
