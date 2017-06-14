@@ -141,7 +141,7 @@ scatterly <- function(data, x, y, name = NA, text = NA,
       xref = 'x',
       yref = 'y',
       xanchor = annotate_xanchor,
-      showarrow = show_arroe,
+      showarrow = show_arrow,
       arrowhead = arrow_head,
       ax = ax_annotate,
       ay = ay_annotate,
@@ -176,7 +176,6 @@ scatterly <- function(data, x, y, name = NA, text = NA,
       autosize = auto_size,
       margin = m,
       legend = l,
-      annotations = a,
       showlegend = show_legend
     )
   
@@ -219,8 +218,9 @@ scatterly <- function(data, x, y, name = NA, text = NA,
 
 
 # test
-scatterly(mtcars, 'disp', 'mpg', text = 'hello', size = 8,
+mtcars$cyl <- as.factor(mtcars$cyl)
+scatterly(mtcars, 'disp', 'mpg', text = 'disp, mpg', size = 8, color = 'cyl',
           title = 'Displacement vs Mileage', axis_range = FALSE,
           x_min = 0, x_max = 600, y_min = 0, y_max = 50,
           x_title = 'Displacement', y_title = 'Miles Per Gallon',
-          show_legend = FALSE, x_showgrid = F, fit_line = T)
+          show_legend = TRUE, x_showgrid = F, fit_line = T)
