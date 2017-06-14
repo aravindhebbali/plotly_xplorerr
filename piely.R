@@ -1,25 +1,8 @@
-library(plotly)
-
 x <- levels(as.factor(mtcars$cyl))
 y <- mtcars$cyl %>% table() %>% as.vector()
 data <- data.frame(x, y)
 
 # intro
-p <- plot_ly(data, labels = ~x, values = ~y, type = 'pie')
-p
-
-p <- plot_ly(data, labels = ~x, values = ~y, type = 'pie') %>%
-  layout(
-    xaxis = list(showgrid = FALSE,
-                 zeroline = FALSE,
-                 showticklabels = FALSE),
-    yaxis = list(showgrid = FALSE,
-                 zeroline = FALSE,
-                 showticklabels = FALSE)
-  )
-p
-
-# add text to pie chart
 p <- plot_ly(data, labels = ~x, values = ~y, type = 'pie',
              textposition = "inside",
              textinfo = 'label+percent',
