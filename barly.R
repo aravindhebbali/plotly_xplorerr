@@ -7,7 +7,21 @@ data <- data.frame(x, y)
 p <- plot_ly(data, 
         x = ~x, 
         y = ~y,
-        type = "bar")
+        type = "bar",
+        name = 'Cylinders',
+        orientation = 'v',
+        text = text,
+        marker = list(color = 'blue',
+                           line = list(
+                             color = 'black',
+                             width = 1.5
+                           ))) %>%
+  layout(
+    title = 'Bar Chart',
+    xaxis = list(title = ""),
+    yaxis = list(title = ""),
+    barmode = 'relative'
+  )
 
 p
 

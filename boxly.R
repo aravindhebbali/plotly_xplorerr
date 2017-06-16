@@ -6,6 +6,7 @@ p <- plot_ly(mtcars, y = ~mpg, type = "box")
 # bivariate
 mtcars$cyl <- as.factor(mtcars$cyl)
 p <- plot_ly(mtcars, y = ~mpg, color = ~cyl, type = "box") 
+p
 
 # grouped box plots
 mtcars$gear <- as.factor(mtcars$gear)
